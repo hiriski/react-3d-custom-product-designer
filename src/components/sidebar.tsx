@@ -1,9 +1,11 @@
 // components
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
+import ProductInformation from './product/product-info'
 
 const Sidebar = () => {
-  const sidebarWidth = 500
+  const sidebarWidth = 640
+
   return (
     <Box
       sx={{
@@ -33,10 +35,7 @@ const Sidebar = () => {
           }),
         ]}
       >
-        <Box sx={{ textAlign: 'center' }}>
-          <Typography variant='h3'>Sidebar</Typography>
-          <Typography variant='subtitle2'>(put toolbar editor here)</Typography>
-        </Box>
+        <ProductInformation />
         <Box
           sx={{
             marginTop: 'auto',

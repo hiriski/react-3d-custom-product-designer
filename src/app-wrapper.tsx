@@ -1,24 +1,30 @@
-// mui
-import Box from '@mui/material/Box'
-
 // components
+import Box from '@mui/material/Box'
 import Header from './components/header'
-import Designer from './components/designer'
 import Sidebar from './components/sidebar'
+import ModelContainer from './components/model-container'
+
+// context provider
+import ProductProvider from './contexts/product.context'
+import DesignContextProvider from './contexts/design.context'
 
 const App = () => {
   return (
-    <Box
-      sx={{
-        height: '100vh',
-        width: '100%',
-        backgroundColor: 'background.default',
-      }}
-    >
-      <Header />
-      <Designer />
-      <Sidebar />
-    </Box>
+    <ProductProvider>
+      <DesignContextProvider>
+        <Box
+          sx={{
+            height: '100vh',
+            width: '100%',
+            backgroundColor: 'background.default',
+          }}
+        >
+          <Header />
+          <ModelContainer />
+          <Sidebar />
+        </Box>
+      </DesignContextProvider>
+    </ProductProvider>
   )
 }
 

@@ -14,10 +14,10 @@ const Header = () => {
         gap: 1,
         top: 0,
         left: 0,
-        width: '100%',
         display: 'flex',
         position: 'fixed',
         alignItems: 'center',
+        zIndex: 9,
       }}
     >
       <Box
