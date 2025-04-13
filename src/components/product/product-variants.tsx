@@ -50,7 +50,7 @@ const ProductVariants = () => {
               cursor: 'pointer',
               borderStyle: 'solid',
               borderColor: 'transparent',
-              backgroundColor: 'background.paper',
+              backgroundColor: theme.palette.background.paper,
               ...(selectedVariant === item.name && {
                 borderColor: `rgb(${item.colorValue.r},${item.colorValue.g},${item.colorValue.b})`,
               }),
