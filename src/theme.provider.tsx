@@ -16,6 +16,36 @@ const theme_typography: TypographyOptions = {
   allVariants: {
     fontFamily: '"Plus Jakarta Sans","Helvetica","Arial",sans-serif',
   },
+  h1: {
+    fontSize: '2.5rem',
+    fontWeight: 700,
+  },
+  h2: {
+    fontSize: '2rem',
+    fontWeight: 700,
+  },
+  h3: {
+    fontSize: '1.65rem',
+    fontWeight: 700,
+  },
+  h4: {
+    fontSize: '1.4rem',
+    fontWeight: 700,
+  },
+  h5: {
+    fontSize: '1.2rem',
+    fontWeight: 700,
+  },
+  h6: {
+    fontSize: '0.9rem',
+    fontWeight: 700,
+  },
+  subtitle1: {
+    fontSize: '0.9rem',
+  },
+  subtitle2: {
+    fontSize: '0.85rem',
+  },
 }
 
 const theme_components: Components = {
