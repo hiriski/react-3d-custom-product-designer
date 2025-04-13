@@ -16,13 +16,14 @@ import '@fontsource/plus-jakarta-sans/700-italic.css'
 import CssBaseline from '@mui/material/CssBaseline'
 import MuiThemeProvider from './theme.provider.tsx'
 
-import App from './App.tsx'
+// app wrapper
+import AppWrapper from './app-wrapper'
 
 createRoot(document.getElementById('root')!).render(
   <Fragment>
     <CssBaseline />
     <MuiThemeProvider>
-      <App />
+      <AppWrapper />
     </MuiThemeProvider>
   </Fragment>
 )
