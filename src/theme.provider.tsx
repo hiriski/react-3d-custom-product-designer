@@ -1,6 +1,7 @@
 import { FC, ReactNode } from 'react'
 import {
   Components,
+  PaletteOptions,
   ThemeOptions,
   ThemeProvider,
   createTheme,
@@ -26,9 +27,17 @@ const theme_components: Components = {
   },
 }
 
+const theme_palette: PaletteOptions = {
+  background: {
+    paper: '#ffffff',
+    default: '#ebeef2',
+  },
+}
+
 const theme: ThemeOptions = createTheme({
   components: theme_components,
   typography: theme_typography,
+  palette: theme_palette,
 })
 
 interface Props {
