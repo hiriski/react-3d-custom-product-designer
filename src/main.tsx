@@ -1,4 +1,3 @@
-import { Fragment } from 'react'
 import { createRoot } from 'react-dom/client'
 
 // fonts
@@ -11,6 +10,8 @@ import '@fontsource/plus-jakarta-sans/600.css'
 import '@fontsource/plus-jakarta-sans/600-italic.css'
 import '@fontsource/plus-jakarta-sans/700.css'
 import '@fontsource/plus-jakarta-sans/700-italic.css'
+import '@fontsource/plus-jakarta-sans/800.css'
+import '@fontsource/plus-jakarta-sans/800-italic.css'
 
 // css reset
 import CssBaseline from '@mui/material/CssBaseline'
@@ -19,11 +20,14 @@ import MuiThemeProvider from './theme.provider.tsx'
 // app wrapper
 import AppWrapper from './app-wrapper'
 
+// router
+import { BrowserRouter } from 'react-router-dom'
+
 createRoot(document.getElementById('root')!).render(
-  <Fragment>
+  <BrowserRouter>
     <CssBaseline />
     <MuiThemeProvider>
       <AppWrapper />
     </MuiThemeProvider>
-  </Fragment>
+  </BrowserRouter>
 )
