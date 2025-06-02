@@ -1,8 +1,4 @@
 // components
-import Box from '@mui/material/Box'
-import Header from './components/header'
-import Sidebar from './components/sidebar'
-import ModelContainer from './components/model-container'
 
 // context provider
 import ProductProvider from './contexts/product.context'

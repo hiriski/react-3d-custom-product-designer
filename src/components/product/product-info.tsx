@@ -6,9 +6,14 @@ import Typography from '@mui/material/Typography'
 
 // hooks
 import { useProduct } from '@/hooks'
+import { FC } from 'react'
 
-const ProductInformation = () => {
-  const { product, selectedVariant } = useProduct()
+interface Props {
+  product: IProduct
+}
+
+const ProductInformation: FC<Props> = ({ product }) => {
+  const { selectedVariant } = useProduct()
   return (
     <Stack gap={3}>
       <Box
@@ -29,13 +34,11 @@ const ProductInformation = () => {
       </Box>
       <Divider />
       <Stack>
-        <Typography variant='h6'>About this product</Typography>
-        <Box component='ul' sx={{ pl: 2 }}>
-          {product.features.map((item, index) => (
-            <Box component='li' key={String(index)} sx={{ mb: 1 }}>
-              <Typography variant='body2'>{item}</Typography>
-            </Box>
-          ))}
+        <Typography variant='h5' sx={{ mb: 2 }}>
+          About this product
+        </Typography>
+        <Box sx={{}}>
+          <Typography variant='body2'>{product.description}</Typography>
         </Box>
       </Stack>
     </Stack>

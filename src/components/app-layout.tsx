@@ -8,8 +8,8 @@ const AppLayout = () => {
   return (
     <Box
       sx={{
-        height: '100vh',
         width: '100%',
+        minHeight: '100vh',
         backgroundColor: 'background.default',
       }}
     >

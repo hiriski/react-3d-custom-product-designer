@@ -2,8 +2,13 @@
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import ProductInformation from './product/product-info'
+import { FC } from 'react'
 
-const Sidebar = () => {
+interface Props {
+  product: IProduct
+}
+
+const Sidebar: FC<Props> = ({ product }) => {
   const sidebarWidth = 640
 
   return (
@@ -35,7 +40,7 @@ const Sidebar = () => {
           }),
         ]}
       >
-        <ProductInformation />
+        <ProductInformation product={product} />
         <Box
           sx={{
             marginTop: 'auto',
