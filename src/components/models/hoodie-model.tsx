@@ -1,6 +1,6 @@
 import { FC, memo, useEffect } from 'react'
-import { Decal, useGLTF, useTexture } from '@react-three/drei'
-import * as THREE from 'three'
+import { useGLTF } from '@react-three/drei'
+// import * as THREE from 'three'
 
 // hoodie model
 import modelGltf from '@/assets/3d/hoodie.glb'
@@ -14,7 +14,7 @@ const HoodieModel: FC<Props> = ({ color }) => {
   // @ts-ignore
   const { nodes, materials } = useGLTF(modelGltf) as unknown
 
-  const logo = useTexture('/svelte-logo.png')
+  // const logo = useTexture('/svelte-logo.png')
 
   useEffect(() => {
     if (color.r < 5 && color.g < 5 && color.b < 5) {

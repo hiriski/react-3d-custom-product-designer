@@ -29,7 +29,7 @@ interface Props {
 
 const ProductProvider: FC<Props> = ({ children }) => {
   // Imagine you get this product data from another galaxy 😆
-  const [data] = useState(PRODUCT_DATA)
+  const [data] = useState(PRODUCT_DATA as unknown as IProduct)
 
   const [listOfProducts, setListOfProducts] = useState<IProduct[]>([])
 

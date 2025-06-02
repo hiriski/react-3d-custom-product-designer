@@ -1,18 +1,21 @@
 import { FC, ReactNode } from 'react'
 import {
   Components,
+  Palette,
   PaletteOptions,
   Shadows,
   ThemeOptions,
   ThemeProvider,
   createTheme,
 } from '@mui/material/styles'
-import { TypographyOptions } from '@mui/material/styles/createTypography'
+import { TypographyVariantsOptions } from 'node_modules/@mui/material'
 
 /**
  * Theme config
  */
-const theme_typography: TypographyOptions = {
+const theme_typography:
+  | TypographyVariantsOptions
+  | ((palette: Palette) => TypographyVariantsOptions) = {
   allVariants: {
     fontFamily: '"Plus Jakarta Sans","Helvetica","Arial",sans-serif',
   },
