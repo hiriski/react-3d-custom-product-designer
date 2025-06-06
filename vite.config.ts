@@ -6,6 +6,7 @@ import svgr from 'vite-plugin-svgr'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tsconfigPaths(), svgr()],
+  base: './', 
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
