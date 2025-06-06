@@ -1,5 +1,5 @@
 import { FC, memo, useEffect } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { Decal, useGLTF, useTexture } from '@react-three/drei'
 // import * as THREE from 'three'
 
 // hoodie model
@@ -7,14 +7,15 @@ import modelGltf from '@/assets/3d/hoodie.glb'
 
 interface Props {
   color: IRgb
+  imageUrl: string
 }
 
-const HoodieModel: FC<Props> = ({ color }) => {
+const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { nodes, materials } = useGLTF(modelGltf) as unknown
 
-  // const logo = useTexture('/svelte-logo.png')
+  const texture = useTexture(imageUrl)
 
   useEffect(() => {
     if (color.r < 5 && color.g < 5 && color.b < 5) {
@@ -40,13 +41,15 @@ const HoodieModel: FC<Props> = ({ color }) => {
         rotation={[4.75, 0, -1.5]}
         dispose={null}
       >
-        {/* <Decal 
-          position={[0.075, 0.08, 0.13]}
-          rotation={-1}
-          scale={0.15}
-          map={logo}
-          depthTest={true}
-        /> */}
+        {texture && (
+          <Decal
+            position={[0.075, 0.08, 0.13]}
+            rotation={-1}
+            scale={0.15}
+            map={texture}
+            depthTest={true}
+          />
+        )}
 
         {/* center */}
         {/* <Decal 

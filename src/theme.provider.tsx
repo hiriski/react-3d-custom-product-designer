@@ -64,7 +64,7 @@ const theme_components: Components = {
 const theme_palette: PaletteOptions = {
   background: {
     paper: '#ffffff',
-    default: '#ebeef2',
+    default: '#e0e9f6',
   },
 }
 

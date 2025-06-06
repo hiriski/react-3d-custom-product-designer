@@ -28,6 +28,7 @@ const CatalogPage = () => {
     <Container maxWidth='md' sx={{ minHeight: '100vh' }}>
       <Stack
         sx={{
+          mb: 6,
           pt: 12,
           display: 'flex',
           alignItems: 'center',
@@ -49,14 +50,18 @@ const CatalogPage = () => {
             },
           }}
         />
-        <Typography
-          variant='h2'
-          component='h1'
-          sx={{ fontWeight: '800', mb: 2 }}
-        >
-          Custom Products
+        <Stack sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <Typography
+            variant='h1'
+            component='h1'
+            sx={{ fontWeight: '800', textAlign: 'center', lineHeight: 1.32 }}
+          >
+            React 3D <br /> Custom Product Designer
+          </Typography>
+        </Stack>
+        <Typography sx={{ color: 'text.secondary' }}>
+          Choose the product you want to customize
         </Typography>
-        <Typography>Choose the product you want to customize</Typography>
       </Stack>
       <Grid container spacing={3} sx={{ mt: 4, pb: 12 }}>
         {products.map((item, index) => (

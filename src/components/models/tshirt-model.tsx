@@ -1,20 +1,20 @@
 import { FC, memo, useEffect } from 'react'
-import { useGLTF } from '@react-three/drei'
-// import * as THREE from 'three'
+import { Decal, useGLTF, useTexture } from '@react-three/drei'
 
 // t-shirt model
 import modelGltf from '@/assets/3d/tshirt.glb'
 
 interface Props {
   color: IRgb
+  imageUrl: string
 }
 
-const TshirtModel: FC<Props> = ({ color }) => {
+const TshirtModel: FC<Props> = ({ color, imageUrl }) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   const { nodes, materials } = useGLTF(modelGltf) as unknown
 
-  // const logo = useTexture('/svelte-logo.png')
+  const texture = useTexture(imageUrl)
 
   useEffect(() => {
     if (color.r < 5 && color.g < 5 && color.b < 5) {
@@ -39,14 +39,13 @@ const TshirtModel: FC<Props> = ({ color }) => {
         position={[0, 0.1, 0]}
         dispose={null}
       >
-        {/* <Decal
-          position={[genP(), 0.08, 0.13]}
+        <Decal
+          position={[-0.075, 0.08, 0.13]}
           rotation={[0, 0, 0]}
-          scale={genS()}
-          map={logoTex}
+          scale={0.09}
+          map={texture}
           depthTest={true}
-          // depthWrite={true}
-        /> */}
+        />
       </mesh>
     </group>
   )

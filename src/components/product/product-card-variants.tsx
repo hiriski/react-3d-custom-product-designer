@@ -1,51 +1,34 @@
-import { useCallback } from 'react'
+import { FC } from 'react'
 
 // components
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
-import { alpha } from '@mui/material/styles'
 
 // hooks
-import { useDesign, useProduct } from '@/hooks'
+import { useProduct } from '@/hooks'
 
-const ProductVariants = () => {
-  const { product, selectedVariant, setSelectedVariant } = useProduct()
-  const { currentColor, setCurrentColor, visibleUploadImage } = useDesign()
+// utils
+import { alpha } from '@mui/material/styles'
 
-  const onChangeVariant = useCallback(
-    (variant: IProductVariant) => {
-      setCurrentColor(variant.colorValue)
-      setSelectedVariant(variant.name)
-    },
-    [currentColor, selectedVariant]
-  )
+interface Props {
+  onClick: (color: IProductVariant) => void
+}
+
+const ProductCardVariants: FC<Props> = ({ onClick }) => {
+  const { product, selectedVariant } = useProduct()
 
   return (
-    <Stack
-      sx={{
-        width: '100%',
-        py: 2,
-        transition: theme =>
-          theme.transitions.create(['margin'], {
-            duration: theme.transitions.duration.short,
-          }),
-        ...(visibleUploadImage && {
-          margin: '0 0 -100px 0',
-        }),
-      }}
-    >
+    <Stack sx={{ width: '100%' }}>
       <Box
         component='ul'
-        sx={theme => ({
-          m: 0,
-          gap: 1.2,
-          py: 1.8,
-          px: 3,
+        sx={() => ({
+          p: 0,
+          gap: 1,
+          width: '100%',
           display: 'flex',
+          alignItems: 'center',
           flexWrap: 'wrap',
-          borderRadius: 12,
           listStyle: 'none',
-          backgroundColor: alpha(theme.palette.background.paper, 0.75),
         })}
       >
         {product.variants.map((item, index) => (
@@ -66,21 +49,20 @@ const ProductVariants = () => {
                 borderColor: `rgb(${item.colorValue.r},${item.colorValue.g},${item.colorValue.b})`,
               }),
             })}
-            onClick={() => onChangeVariant(item)}
+            onClick={() => onClick(item)}
           >
             <Box
               sx={{
-                width: 36,
-                height: 36,
+                width: 30,
+                height: 30,
                 display: 'flex',
                 borderRadius: 6,
                 backgroundColor: alpha(
                   `rgb(${item.colorValue.r},${item.colorValue.g},${item.colorValue.b})`,
-                  0.75
+                  0.85
                 ),
               }}
             />
-            {/* <ProductVariantItem color={item.colorValue} /> */}
           </Box>
         ))}
       </Box>
@@ -88,4 +70,4 @@ const ProductVariants = () => {
   )
 }
 
-export default ProductVariants
+export default ProductCardVariants

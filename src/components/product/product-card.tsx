@@ -4,6 +4,9 @@ import { FC, memo, useCallback } from 'react'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
+import ProductCardVariants from './product-card-variants'
+
+// router
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
@@ -12,16 +15,19 @@ interface Props {
 const ProductCard: FC<Props> = ({ product }) => {
   const navigation = useNavigate()
 
-  const onClick = useCallback(() => {
-    navigation(`/product/${product.id}`)
-  }, [product?.id])
+  const onClick = useCallback(
+    (color?: IProductVariant) => {
+      navigation(`/product/${product.id}`, { state: { color } })
+    },
+    [product?.id]
+  )
 
   return (
     <Box
       sx={{
         p: 1.4,
         display: 'flex',
-        borderRadius: 4,
+        borderRadius: 6,
         flexDirection: 'column',
         justifyContent: 'space-between',
         backgroundColor: 'background.paper',
@@ -38,12 +44,12 @@ const ProductCard: FC<Props> = ({ product }) => {
     >
       <Box
         sx={{
-          borderRadius: 3.2,
+          borderRadius: 4.2,
           lineHeight: 0,
           overflow: 'hidden',
           cursor: 'pointer',
         }}
-        onClick={onClick}
+        onClick={() => onClick()}
       >
         <Box
           className='product-img'
@@ -60,7 +66,8 @@ const ProductCard: FC<Props> = ({ product }) => {
           }}
         />
       </Box>
-      <Stack direction='column' sx={{ px: 2, pt: 2, pb: 1.2 }}>
+      <Stack direction='column' sx={{ px: 2, pt: 0.4, pb: 1.2 }}>
+        <ProductCardVariants onClick={onClick} />
         <Typography sx={{ fontSize: 17, fontWeight: '700', mb: 0.5 }}>
           {product.title}
         </Typography>

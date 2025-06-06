@@ -9,6 +9,7 @@ import { OrbitControls } from '@react-three/drei'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import ProductVariants from './product/product-variants'
+import DesignerUploadImage from './designer/designer-upload-image'
 
 // hooks
 import { useDesign } from '@/hooks'
@@ -23,17 +24,17 @@ interface Props {
 }
 
 const ModelContainer: FC<Props> = ({ product }) => {
-  const { currentColor } = useDesign()
+  const { currentColor, imageUrl } = useDesign()
 
   const defineModelComponent = useCallback(() => {
     if (product.id === 1) {
-      return <HoodieModel color={currentColor} />
+      return <HoodieModel color={currentColor} imageUrl={imageUrl} />
     } else if (product.id === 2) {
-      return <TshirtModel color={currentColor} />
+      return <TshirtModel color={currentColor} imageUrl={imageUrl} />
     } else {
       return null
     }
-  }, [product, currentColor])
+  }, [product, currentColor, imageUrl])
 
   return (
     <Box
@@ -72,6 +73,7 @@ const ModelContainer: FC<Props> = ({ product }) => {
         </Suspense>
       </Canvas>
       <Stack sx={{ position: 'absolute', bottom: 6 }}>
+        <DesignerUploadImage />
         <ProductVariants />
       </Stack>
     </Box>
