@@ -1,39 +1,59 @@
-import { FC } from 'react'
+import { FC, useCallback } from 'react'
 
 // components
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
+import { alpha } from '@mui/material/styles'
 
 // hooks
-import { useProduct } from '@/hooks'
-
-// utils
-import { alpha } from '@mui/material/styles'
+import { useDesign, useProduct } from '@/hooks'
 
 interface Props {
   product: IProduct
-  onClick: (color: IProductVariant) => void
 }
 
-const ProductCardVariants: FC<Props> = ({ product, onClick }) => {
-  const { selectedVariant } = useProduct()
+const DesignerProductVariants: FC<Props> = ({ product }) => {
+  const { selectedVariant, setSelectedVariant } = useProduct()
+  const { currentColor, setCurrentColor, visibleUploadImage } = useDesign()
+
+  const onChangeVariant = useCallback(
+    (variant: IProductVariant) => {
+      setCurrentColor(variant.colorValue)
+      setSelectedVariant(variant.name)
+    },
+    [currentColor, selectedVariant]
+  )
 
   if (product) {
     return (
-      <Stack sx={{ width: '100%' }}>
+      <Stack
+        sx={{
+          width: '100%',
+          py: 2,
+          transition: theme =>
+            theme.transitions.create(['margin'], {
+              duration: theme.transitions.duration.short,
+            }),
+          ...(visibleUploadImage && {
+            margin: '0 0 -100px 0',
+          }),
+        }}
+      >
         <Box
           component='ul'
-          sx={() => ({
-            p: 0,
-            gap: 1,
-            width: '100%',
+          sx={theme => ({
+            m: 0,
+            gap: 1.2,
+            py: 1.8,
+            px: 3,
             display: 'flex',
-            alignItems: 'center',
             flexWrap: 'wrap',
+            borderRadius: 12,
             listStyle: 'none',
+            backgroundColor: alpha(theme.palette.background.paper, 0.75),
           })}
         >
-          {product.variants.map((item, index) => (
+          {product?.variants?.map((item, index) => (
             <Box
               component='li'
               key={String(index)}
@@ -51,17 +71,17 @@ const ProductCardVariants: FC<Props> = ({ product, onClick }) => {
                   borderColor: `rgb(${item.colorValue.r},${item.colorValue.g},${item.colorValue.b})`,
                 }),
               })}
-              onClick={() => onClick(item)}
+              onClick={() => onChangeVariant(item)}
             >
               <Box
                 sx={{
-                  width: 30,
-                  height: 30,
+                  width: 36,
+                  height: 36,
                   display: 'flex',
                   borderRadius: 6,
                   backgroundColor: alpha(
                     `rgb(${item.colorValue.r},${item.colorValue.g},${item.colorValue.b})`,
-                    0.85
+                    0.75
                   ),
                 }}
               />
@@ -73,4 +93,4 @@ const ProductCardVariants: FC<Props> = ({ product, onClick }) => {
   }
 }
 
-export default ProductCardVariants
+export default DesignerProductVariants

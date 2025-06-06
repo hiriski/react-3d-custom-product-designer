@@ -29,7 +29,7 @@ const TshirtModel: FC<Props> = ({ color, imageUrl }) => {
   }, [color])
 
   return (
-    <group scale={5.75}>
+    <group scale={5.25}>
       <mesh
         castShadow
         receiveShadow

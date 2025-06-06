@@ -30,7 +30,7 @@ const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
   }, [color])
 
   return (
-    <group scale={4.5}>
+    <group scale={4}>
       <mesh
         castShadow
         receiveShadow
@@ -50,16 +50,6 @@ const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
             depthTest={true}
           />
         )}
-
-        {/* center */}
-        {/* <Decal 
-          // position={[0.02, 0, 0]}
-          position={new THREE.Vector3(0.2, 0, 0)}
-          rotation={-1}
-          scale={0.4}
-          map={logo}
-          depthTest={true}
-        /> */}
       </mesh>
     </group>
   )

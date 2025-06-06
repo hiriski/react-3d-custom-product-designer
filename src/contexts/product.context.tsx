@@ -1,22 +1,4 @@
-import {
-  createContext,
-  Dispatch,
-  FC,
-  ReactNode,
-  SetStateAction,
-  useState,
-} from 'react'
-
-// constants
-import { PRODUCT_DATA } from '@/constants/product.constant'
-
-interface IProductContext {
-  product: IProduct
-  listOfProducts: IProduct[]
-  setListOfProducts: Dispatch<SetStateAction<IProduct[]>>
-  selectedVariant: AvailableProductColor
-  setSelectedVariant: Dispatch<SetStateAction<AvailableProductColor>>
-}
+import { createContext, FC, ReactNode, useState } from 'react'
 
 // product context
 export const ProductContext = createContext<IProductContext>(
@@ -29,17 +11,14 @@ interface Props {
 
 const ProductProvider: FC<Props> = ({ children }) => {
   // Imagine you get this product data from another galaxy 😆
-  const [data] = useState(PRODUCT_DATA as unknown as IProduct)
-
   const [listOfProducts, setListOfProducts] = useState<IProduct[]>([])
 
   const [selectedVariant, setSelectedVariant] =
-    useState<AvailableProductColor>('BLACK')
+    useState<ProductVariantColor>('BLACK')
 
   return (
     <ProductContext.Provider
       value={{
-        product: data,
         selectedVariant,
         setSelectedVariant,
         listOfProducts,

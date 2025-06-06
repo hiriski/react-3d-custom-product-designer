@@ -1,4 +1,5 @@
-import products from './raw/products.json'
+import raw from './raw/products.json'
+const products = raw as IProduct[]
 
 const FakeApi = {
   fetchProducts: async (): Promise<IProduct[]> => {

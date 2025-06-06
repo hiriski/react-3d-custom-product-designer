@@ -1,21 +1,5 @@
 import { TEXTURE_DEFAULT } from '@/constants/designer.constant'
-import {
-  FC,
-  Dispatch,
-  ReactNode,
-  useState,
-  SetStateAction,
-  createContext,
-} from 'react'
-
-interface IDesignContext {
-  currentColor: IRgb
-  setCurrentColor: Dispatch<SetStateAction<IRgb>>
-  visibleUploadImage: boolean
-  setVisibleUploadImage: Dispatch<SetStateAction<boolean>>
-  imageUrl: string
-  setImageUrl: Dispatch<SetStateAction<string>>
-}
+import { FC, ReactNode, useState, createContext } from 'react'
 
 const DEFAULT_COLOR: IRgb = {
   r: 18,
@@ -24,13 +8,15 @@ const DEFAULT_COLOR: IRgb = {
 }
 
 // Design context
-export const DesignContext = createContext<IDesignContext>({} as IDesignContext)
+export const DesignContext = createContext<IDesignerContext>(
+  {} as IDesignerContext
+)
 
 interface Props {
   children: ReactNode
 }
 
-const DesignContextProvider: FC<Props> = ({ children }) => {
+const DesignerContextProvider: FC<Props> = ({ children }) => {
   const [currentColor, setCurrentColor] = useState<IRgb>(DEFAULT_COLOR)
   const [visibleUploadImage, setVisibleUploadImage] = useState(false)
   const [imageUrl, setImageUrl] = useState<string>(TEXTURE_DEFAULT)
@@ -51,4 +37,4 @@ const DesignContextProvider: FC<Props> = ({ children }) => {
   )
 }
 
-export default DesignContextProvider
+export default DesignerContextProvider
