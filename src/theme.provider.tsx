@@ -1,18 +1,21 @@
 import { FC, ReactNode } from 'react'
 import {
   Components,
+  Palette,
   PaletteOptions,
   Shadows,
   ThemeOptions,
   ThemeProvider,
   createTheme,
 } from '@mui/material/styles'
-import { TypographyOptions } from '@mui/material/styles/createTypography'
+import { TypographyVariantsOptions } from 'node_modules/@mui/material'
 
 /**
  * Theme config
  */
-const theme_typography: TypographyOptions = {
+const theme_typography:
+  | TypographyVariantsOptions
+  | ((palette: Palette) => TypographyVariantsOptions) = {
   allVariants: {
     fontFamily: '"Plus Jakarta Sans","Helvetica","Arial",sans-serif',
   },
@@ -61,14 +64,14 @@ const theme_components: Components = {
 const theme_palette: PaletteOptions = {
   background: {
     paper: '#ffffff',
-    default: '#ebeef2',
+    default: '#e0e9f6',
   },
 }
 
 const theme_shadows: Shadows = [
   'none',
-  '0px 4px 10px 0px rgba(0,0,0,0.1)',
-  '0px 5px 16px 0px rgba(0,0,0,0.1)',
+  '0px 3px 10px 0px rgba(0,0,0,0.03)',
+  '0px 5px 16px 0px rgba(0,0,0,0.075)',
   '0px 6px 20px 0px rgba(0,0,0,0.1)',
   '0px 6px 24px 0px rgba(0,0,0,0.1)',
   '0px 10px 30px 0px rgba(0,0,0,0.1)',
@@ -81,6 +84,15 @@ const theme: ThemeOptions = createTheme({
   typography: theme_typography,
   palette: theme_palette,
   shadows: theme_shadows,
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      md: 820,
+      lg: 1100,
+      xl: 1336,
+    },
+  },
 })
 
 interface Props {

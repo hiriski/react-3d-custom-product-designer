@@ -12,6 +12,8 @@ import { PRODUCT_DATA } from '@/constants/product.constant'
 
 interface IProductContext {
   product: IProduct
+  listOfProducts: IProduct[]
+  setListOfProducts: Dispatch<SetStateAction<IProduct[]>>
   selectedVariant: AvailableProductColor
   setSelectedVariant: Dispatch<SetStateAction<AvailableProductColor>>
 }
@@ -27,14 +29,22 @@ interface Props {
 
 const ProductProvider: FC<Props> = ({ children }) => {
   // Imagine you get this product data from another galaxy 😆
-  const [data] = useState(PRODUCT_DATA)
+  const [data] = useState(PRODUCT_DATA as unknown as IProduct)
+
+  const [listOfProducts, setListOfProducts] = useState<IProduct[]>([])
 
   const [selectedVariant, setSelectedVariant] =
     useState<AvailableProductColor>('BLACK')
 
   return (
     <ProductContext.Provider
-      value={{ product: data, selectedVariant, setSelectedVariant }}
+      value={{
+        product: data,
+        selectedVariant,
+        setSelectedVariant,
+        listOfProducts,
+        setListOfProducts,
+      }}
     >
       {children}
     </ProductContext.Provider>

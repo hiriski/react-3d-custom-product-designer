@@ -22,9 +22,11 @@ interface IProductVariant {
 }
 
 interface IProduct {
+  id: number
   title: string
   description: string
-  features: string[]
+  categories: string[]
   price: string
   variants: IProductVariant[]
+  thumbnail: string
 }

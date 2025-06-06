@@ -1,4 +1,4 @@
-import { Suspense } from 'react'
+import { FC, Suspense, useCallback } from 'react'
 
 // react three
 import { Canvas } from '@react-three/fiber'
@@ -8,15 +8,33 @@ import { OrbitControls } from '@react-three/drei'
 
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
-import HoodieModel from './models/hoodie-model'
 import ProductVariants from './product/product-variants'
+import DesignerUploadImage from './designer/designer-upload-image'
 
 // hooks
 import { useDesign } from '@/hooks'
 import Preloader from './preload'
 
-const ModelContainer = () => {
-  const { currentColor } = useDesign()
+// model components
+import TshirtModel from './models/tshirt-model'
+import HoodieModel from './models/hoodie-model'
+
+interface Props {
+  product: IProduct
+}
+
+const ModelContainer: FC<Props> = ({ product }) => {
+  const { currentColor, imageUrl } = useDesign()
+
+  const defineModelComponent = useCallback(() => {
+    if (product.id === 1) {
+      return <HoodieModel color={currentColor} imageUrl={imageUrl} />
+    } else if (product.id === 2) {
+      return <TshirtModel color={currentColor} imageUrl={imageUrl} />
+    } else {
+      return null
+    }
+  }, [product, currentColor, imageUrl])
 
   return (
     <Box
@@ -43,7 +61,7 @@ const ModelContainer = () => {
             groundColor={'#000'}
             intensity={0.01}
           />
-          <HoodieModel color={currentColor} />
+          {defineModelComponent()}
           <OrbitControls
             target={[0, 0.4, 0]}
             maxDistance={30}
@@ -55,6 +73,7 @@ const ModelContainer = () => {
         </Suspense>
       </Canvas>
       <Stack sx={{ position: 'absolute', bottom: 6 }}>
+        <DesignerUploadImage />
         <ProductVariants />
       </Stack>
     </Box>
