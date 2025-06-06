@@ -67,7 +67,7 @@ const ProductCard: FC<Props> = ({ product }) => {
         />
       </Box>
       <Stack direction='column' sx={{ px: 2, pt: 0.4, pb: 1.2 }}>
-        <ProductCardVariants onClick={onClick} />
+        <ProductCardVariants onClick={onClick} product={product} />
         <Typography sx={{ fontSize: 17, fontWeight: '700', mb: 0.5 }}>
           {product.title}
         </Typography>

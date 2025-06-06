@@ -1,22 +1,29 @@
 import { useEffect, useState } from 'react'
 
 // components
-import Header from '@/components/header'
+import Stack from '@mui/material/Stack'
+import DesignerHeader from '@/components/designer/designer-header'
 import Sidebar from '@/components/sidebar'
 import ModelContainer from '@/components/model-container'
-import { Stack } from '@mui/material'
+
+// apis
 import FakeApi from '@/api/fakeApi'
+
+// navigation
 import { useLocation, useParams } from 'react-router-dom'
-import { useDesign } from '@/hooks'
+
+// hooks
+import { useDesign, useProduct } from '@/hooks'
 
 const fetchProduct = async (productId: number) => {
-  const products = await FakeApi.fetchProductById(productId)
-  return products
+  const product = await FakeApi.fetchProductById(productId)
+  return product
 }
 
 const ProductDesignerPage = () => {
   const [product, setProduct] = useState<IProduct>({} as IProduct)
   const { setCurrentColor } = useDesign()
+  const { setSelectedVariant } = useProduct()
 
   const params = useParams()
   const { state } = useLocation()
@@ -34,12 +41,13 @@ const ProductDesignerPage = () => {
   useEffect(() => {
     if (color?.colorValue) {
       setCurrentColor(color.colorValue)
+      setSelectedVariant(color.name)
     }
   }, [color])
 
   return (
     <Stack sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
-      <Header />
+      <DesignerHeader />
       <ModelContainer product={product} />
       <Sidebar product={product} />
     </Stack>

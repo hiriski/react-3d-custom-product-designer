@@ -2,7 +2,7 @@
 
 // context provider
 import ProductProvider from './contexts/product.context'
-import DesignContextProvider from './contexts/design.context'
+import DesignerContextProvider from './contexts/designer.context'
 import { Route, Routes } from 'react-router-dom'
 import AppLayout from '@/components/app-layout'
 import CatalogPage from './pages/catalog.page'
@@ -12,7 +12,7 @@ import ProductDesignerPage from './pages/product-designer.page'
 const App = () => {
   return (
     <ProductProvider>
-      <DesignContextProvider>
+      <DesignerContextProvider>
         <Routes>
           <Route path='/' element={<AppLayout />}>
             <Route index element={<CatalogPage />} />
@@ -20,7 +20,7 @@ const App = () => {
             <Route path='*' element={<NotMatchPage />} />
           </Route>
         </Routes>
-      </DesignContextProvider>
+      </DesignerContextProvider>
     </ProductProvider>
   )
 }

@@ -38,7 +38,9 @@ const ProductInformation: FC<Props> = ({ product }) => {
           About this product
         </Typography>
         <Box sx={{}}>
-          <Typography variant='body2'>{product.description}</Typography>
+          <Typography variant='body2' sx={{ lineHeight: 1.75 }}>
+            {product.description}
+          </Typography>
         </Box>
       </Stack>
     </Stack>

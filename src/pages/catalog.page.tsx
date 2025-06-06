@@ -1,3 +1,9 @@
+import { useEffect, useState } from 'react'
+
+// apis
+import FakeApi from '@/api/fakeApi'
+
+// components
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
@@ -5,10 +11,6 @@ import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import ProductCard from '@/components/product/product-card'
 import Footer from '@/components/footer'
-import { useEffect, useState } from 'react'
-import FakeApi from '@/api/fakeApi'
-
-// components
 
 const fetchProducts = async () => {
   const products = await FakeApi.fetchProducts()
@@ -28,8 +30,8 @@ const CatalogPage = () => {
     <Container maxWidth='md' sx={{ minHeight: '100vh' }}>
       <Stack
         sx={{
-          mb: 6,
-          pt: 12,
+          mb: 5,
+          pt: 8,
           display: 'flex',
           alignItems: 'center',
           justify: 'center',
@@ -52,7 +54,7 @@ const CatalogPage = () => {
         />
         <Stack sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
           <Typography
-            variant='h1'
+            variant='h2'
             component='h1'
             sx={{ fontWeight: '800', textAlign: 'center', lineHeight: 1.32 }}
           >
