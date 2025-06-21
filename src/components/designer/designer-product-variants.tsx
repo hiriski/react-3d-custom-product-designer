@@ -43,14 +43,23 @@ const DesignerProductVariants: FC<Props> = ({ product }) => {
           component='ul'
           sx={theme => ({
             m: 0,
-            gap: 1.2,
-            py: 1.8,
-            px: 3,
+            gap: { xs: 0.5, sm: 0.8, md: 1 },
+            py: {
+              xs: 0.8,
+              sm: 1,
+              md: 1.8,
+            },
+            px: {
+              xs: 1.8,
+              sm: 2,
+              lg: 3,
+            },
             display: 'flex',
             flexWrap: 'wrap',
             borderRadius: 12,
             listStyle: 'none',
             backgroundColor: alpha(theme.palette.background.paper, 0.75),
+            backdropFilter: 'blur(3px)',
           })}
         >
           {product?.variants?.map((item, index) => (
@@ -75,8 +84,8 @@ const DesignerProductVariants: FC<Props> = ({ product }) => {
             >
               <Box
                 sx={{
-                  width: 36,
-                  height: 36,
+                  width: { xs: 22, sm: 26, lg: 32 },
+                  height: { xs: 22, sm: 26, lg: 32 },
                   display: 'flex',
                   borderRadius: 6,
                   backgroundColor: alpha(

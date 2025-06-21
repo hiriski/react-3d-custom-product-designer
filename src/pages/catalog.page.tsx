@@ -31,7 +31,7 @@ const CatalogPage = () => {
       <Stack
         sx={{
           mb: 5,
-          pt: 8,
+          pt: { xs: 4, md: 8 },
           display: 'flex',
           alignItems: 'center',
           justify: 'center',
@@ -54,9 +54,16 @@ const CatalogPage = () => {
         />
         <Stack sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
           <Typography
-            variant='h2'
             component='h1'
-            sx={{ fontWeight: '800', textAlign: 'center', lineHeight: 1.32 }}
+            sx={{
+              fontWeight: '800',
+              textAlign: 'center',
+              lineHeight: 1.32,
+              fontSize: {
+                xs: 24,
+                md: 28,
+              },
+            }}
           >
             React 3D <br /> Custom Product Designer
           </Typography>
@@ -67,7 +74,7 @@ const CatalogPage = () => {
       </Stack>
       <Grid container spacing={3} sx={{ mt: 4, pb: 12 }}>
         {products.map((item, index) => (
-          <Grid key={String(index)} size={{ xs: 12, md: 6 }}>
+          <Grid key={String(index)} size={{ xs: 12, sm: 6 }}>
             <ProductCard product={item} />
           </Grid>
         ))}

@@ -12,6 +12,7 @@ interface Props {
 const ProductProvider: FC<Props> = ({ children }) => {
   // Imagine you get this product data from another galaxy 😆
   const [listOfProducts, setListOfProducts] = useState<IProduct[]>([])
+  const [showProductInfo, setShowProductInfo] = useState<boolean | null>(null)
 
   const [selectedVariant, setSelectedVariant] =
     useState<ProductVariantColor>('BLACK')
@@ -23,6 +24,8 @@ const ProductProvider: FC<Props> = ({ children }) => {
         setSelectedVariant,
         listOfProducts,
         setListOfProducts,
+        showProductInfo,
+        setShowProductInfo,
       }}
     >
       {children}

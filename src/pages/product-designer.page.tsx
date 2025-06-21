@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 
 // components
 import Stack from '@mui/material/Stack'
-import DesignerHeader from '@/components/designer/designer-header'
-import Sidebar from '@/components/sidebar'
 import ModelContainer from '@/components/model-container'
+import DesignerHeader from '@/components/designer/designer-header'
+import SidebarProductInfo from '@/components/product/sidebar-product-info'
 
 // apis
 import FakeApi from '@/api/fakeApi'
@@ -46,10 +46,10 @@ const ProductDesignerPage = () => {
   }, [color])
 
   return (
-    <Stack sx={{ height: '100vh', width: '100%', overflow: 'hidden' }}>
+    <Stack sx={{ height: '100vh', width: '100%' }}>
       <DesignerHeader />
       <ModelContainer product={product} />
-      <Sidebar product={product} />
+      <SidebarProductInfo product={product} />
     </Stack>
   )
 }

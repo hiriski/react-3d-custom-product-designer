@@ -4,6 +4,7 @@ import { Decal, useGLTF, useTexture } from '@react-three/drei'
 
 // hoodie model
 import modelGltf from '@/assets/3d/hoodie.glb'
+import { useMediaQuery, useTheme } from '@mui/material'
 
 interface Props {
   color: IRgb
@@ -16,6 +17,10 @@ const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
   const { nodes, materials } = useGLTF(modelGltf) as unknown
 
   const texture = useTexture(imageUrl)
+
+  const { breakpoints } = useTheme()
+
+  const matchMobileView = useMediaQuery(breakpoints.down('md'))
 
   useEffect(() => {
     if (color.r < 5 && color.g < 5 && color.b < 5) {
@@ -30,7 +35,7 @@ const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
   }, [color])
 
   return (
-    <group scale={4}>
+    <group scale={matchMobileView ? 3.4 : 4}>
       <mesh
         castShadow
         receiveShadow

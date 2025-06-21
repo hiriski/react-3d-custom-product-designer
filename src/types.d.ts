@@ -49,6 +49,8 @@ declare global {
     setListOfProducts: Dispatch<SetStateAction<IProduct[]>>
     selectedVariant: ProductVariantColor
     setSelectedVariant: Dispatch<SetStateAction<ProductVariantColor>>
+    showProductInfo: boolean | null
+    setShowProductInfo: Dispatch<SetStateAction<boolean | null>>
   }
 }
 

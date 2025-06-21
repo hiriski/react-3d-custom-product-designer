@@ -7,16 +7,21 @@ import { OrbitControls } from '@react-three/drei'
 // components
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
+import IconButton from '@mui/material/IconButton'
 import DesignerUploadImage from './designer/designer-upload-image'
 import DesignerProductVariants from './designer/designer-product-variants'
 
 // hooks
-import { useDesign } from '@/hooks'
+import { useDesign, useProduct } from '@/hooks'
 import Preloader from './preload'
 
 // model components
 import TshirtModel from './models/tshirt-model'
 import HoodieModel from './models/hoodie-model'
+import { SIDEBAR_WIDTH } from '@/constants/designer.constant'
+
+// icons
+import InfoIcon from '@/assets/icons/heroicons--information-circle-20-solid.svg'
 
 interface Props {
   product: IProduct
@@ -24,6 +29,8 @@ interface Props {
 
 const ModelContainer: FC<Props> = ({ product }) => {
   const { currentColor, imageUrl } = useDesign()
+
+  const { setShowProductInfo, showProductInfo } = useProduct()
 
   const defineModelComponent = useCallback(() => {
     if (product.id === 1) {
@@ -35,6 +42,10 @@ const ModelContainer: FC<Props> = ({ product }) => {
     }
   }, [product, currentColor, imageUrl])
 
+  const onClickToggleSidebar = useCallback(() => {
+    setShowProductInfo(!showProductInfo)
+  }, [showProductInfo])
+
   if (product) {
     return (
       <Box
@@ -42,9 +53,15 @@ const ModelContainer: FC<Props> = ({ product }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          height: '100%',
+          height: {
+            xs: '100vh',
+            lg: '100%',
+          },
           width: '100%',
-          paddingRight: '640px',
+          pr: {
+            xs: 0,
+            lg: `${SIDEBAR_WIDTH}px`,
+          },
         }}
       >
         <Canvas
@@ -75,6 +92,23 @@ const ModelContainer: FC<Props> = ({ product }) => {
         <Stack sx={{ position: 'absolute', bottom: 6 }}>
           <DesignerUploadImage />
           <DesignerProductVariants product={product} />
+        </Stack>
+
+        <Stack
+          sx={{
+            display: { xs: 'block', lg: 'none' },
+            position: 'absolute',
+            bottom: 28,
+            right: { xs: 4, sm: 8 },
+          }}
+        >
+          <IconButton onClick={onClickToggleSidebar}>
+            <Box
+              component='img'
+              src={InfoIcon}
+              sx={{ height: 24, width: 24 }}
+            />
+          </IconButton>
         </Stack>
       </Box>
     )
