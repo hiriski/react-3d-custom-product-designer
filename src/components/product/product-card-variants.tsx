@@ -55,8 +55,16 @@ const ProductCardVariants: FC<Props> = ({ product, onClick }) => {
             >
               <Box
                 sx={{
-                  width: 30,
-                  height: 30,
+                  width: {
+                    xs: 20,
+                    sm: 24,
+                    md: 30,
+                  },
+                  height: {
+                    xs: 20,
+                    sm: 24,
+                    md: 30,
+                  },
                   display: 'flex',
                   borderRadius: 6,
                   backgroundColor: alpha(

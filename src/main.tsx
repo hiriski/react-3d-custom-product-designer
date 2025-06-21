@@ -15,10 +15,10 @@ import '@fontsource/plus-jakarta-sans/800-italic.css'
 
 // css reset
 import CssBaseline from '@mui/material/CssBaseline'
-import MuiThemeProvider from './theme.provider.tsx'
 
 // app wrapper
 import AppWrapper from './app-wrapper'
+import MuiThemeProvider from './plugins/@mui/components/@mui-theme.provider'
 
 // router
 import { BrowserRouter } from 'react-router-dom'

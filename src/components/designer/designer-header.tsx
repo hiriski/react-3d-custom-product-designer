@@ -21,7 +21,10 @@ const DesignerHeader = () => {
   return (
     <Box
       sx={{
-        p: 4,
+        p: {
+          xs: 2,
+          lg: 4,
+        },
         gap: 1,
         top: 0,
         left: 0,
