@@ -21,7 +21,7 @@ import HoodieModel from './models/hoodie-model'
 import { SIDEBAR_WIDTH } from '@/constants/designer.constant'
 
 // icons
-import InfoIcon from '@/assets/icons/heroicons--information-circle-20-solid.svg'
+import InfoIcon from '@/assets/icons/heroicons--information-circle-20-solid.svg?react'
 
 interface Props {
   product: IProduct
@@ -103,11 +103,7 @@ const ModelContainer: FC<Props> = ({ product }) => {
           }}
         >
           <IconButton onClick={onClickToggleSidebar}>
-            <Box
-              component='img'
-              src={InfoIcon}
-              sx={{ height: 24, width: 24 }}
-            />
+            <Box component={InfoIcon} sx={{ height: 24, width: 24 }} />
           </IconButton>
         </Stack>
       </Box>

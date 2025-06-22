@@ -30,7 +30,7 @@ const MuiThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     }
   }, [mediaQuery?.matches])
 
-  const theme = useMemo<Theme>(() => createTheme(isDarkMode), [isDarkMode])
+  const theme = useMemo<Theme>(() => createTheme(true), [isDarkMode])
 
   return (
     <ThemeProvider theme={theme}>
