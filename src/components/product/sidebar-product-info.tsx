@@ -14,7 +14,7 @@ import { SIDEBAR_WIDTH } from '@/constants/designer.constant'
 import { useMediaQuery, useTheme } from '@mui/material'
 
 // icons
-import ArrowDownIcon from '@/assets/icons/solar--alt-arrow-down-line-duotone.svg'
+import ArrowDownIcon from '@/assets/icons/solar--alt-arrow-down-line-duotone.svg?react'
 
 interface Props {
   product: IProduct
@@ -93,7 +93,7 @@ const SidebarProductInfo: FC<Props> = ({ product }) => {
           size='small'
           sx={{
             position: 'absolute',
-            top: -13, 
+            top: -13,
             right: 100,
             backgroundColor: 'primary.main',
             boxShadow: theme => theme.shadows[2],
@@ -103,11 +103,7 @@ const SidebarProductInfo: FC<Props> = ({ product }) => {
             display: visibleSidebarOnMobileView ? 'inline-flex' : 'none',
           }}
         >
-          <Box
-            component='img'
-            src={ArrowDownIcon}
-            sx={{ height: 24, width: 24 }}
-          />
+          <Box component={ArrowDownIcon} sx={{ height: 24, width: 24 }} />
         </IconButton>
         <Stack gap={3}>
           <Box

@@ -9,7 +9,7 @@ import { alpha } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 // assets
-import BackIcon from '@/assets/icons/solar--arrow-left-linear.svg'
+import BackIcon from '@/assets/icons/solar--arrow-left-linear.svg?react'
 
 const DesignerHeader = () => {
   const navigate = useNavigate()
@@ -37,7 +37,10 @@ const DesignerHeader = () => {
       <Button
         onClick={onClickBack}
         startIcon={
-          <Box component='img' src={BackIcon} sx={{ width: 20, height: 20 }} />
+          <Box
+            component={BackIcon}
+            sx={{ color: 'text.primary', width: 20, height: 20 }}
+          />
         }
         sx={{
           px: 2,

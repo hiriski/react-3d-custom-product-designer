@@ -24,10 +24,10 @@ import { useDesign } from '@/hooks'
 import { motion, AnimatePresence } from 'framer-motion'
 
 // assets
-import UploadIcon from '@/assets/icons/meteor-icons--upload.svg'
-import CloseIcon from '@/assets/icons/iconamoon--close-bold.svg'
-import GalleryIcon from '@/assets/icons/fluent-color--image-16.svg'
-import TrashIcon from '@/assets/icons/tabler--trash.svg'
+import UploadIcon from '@/assets/icons/meteor-icons--upload.svg?react'
+import CloseIcon from '@/assets/icons/iconamoon--close-bold.svg?react'
+import GalleryIcon from '@/assets/icons/fluent-color--image-16.svg?react'
+import TrashIcon from '@/assets/icons/tabler--trash.svg?react'
 
 // color libs
 import { red } from '@mui/material/colors'
@@ -236,23 +236,14 @@ const DesignerUploadImage: React.FC<ImageUploadProps> = ({
           >
             <Fragment>
               {hasUploadedImage && (
-                <Box
-                  component='img'
-                  src={TrashIcon}
-                  sx={{ width: 20, height: 'auto' }}
-                />
+                <Box component={TrashIcon} sx={{ width: 20, height: 'auto' }} />
               )}
               {visibleUploadImage && (
-                <Box
-                  component='img'
-                  src={CloseIcon}
-                  sx={{ width: 20, height: 'auto' }}
-                />
+                <Box component={CloseIcon} sx={{ width: 20, height: 'auto' }} />
               )}
               {!visibleUploadImage && !hasUploadedImage && (
                 <Box
-                  component='img'
-                  src={UploadIcon}
+                  component={UploadIcon}
                   sx={{ width: 20, height: 'auto' }}
                 />
               )}
@@ -309,8 +300,7 @@ const DesignerUploadImage: React.FC<ImageUploadProps> = ({
                 onClick={onClickBrowse}
               >
                 <Box
-                  component='img'
-                  src={GalleryIcon}
+                  component={GalleryIcon}
                   sx={{ width: 72, height: 'auto' }}
                 />
                 <Typography
