@@ -137,12 +137,139 @@ The application uses Material-UI theming. Customize colors, typography, and spac
 
 ## 🧪 Testing
 
-While this project doesn't include tests yet, we recommend adding:
+This project uses **Jest** and **React Testing Library** for comprehensive testing.
 
-- **Unit Tests**: For utility functions and hooks
+### Running Tests
+
+```bash
+# Run tests in watch mode
+npm run test
+
+# Run tests once
+npm run test:ci
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode (alternative)
+npm run test:watch
+```
+
+### Test Structure
+
+Tests are organized alongside the source code:
+
+```
+src/
+├── components/
+│   ├── __tests__/          # Component tests
+│   └── product/
+│       └── __tests__/      # Product component tests
+├── hooks/
+│   └── __tests__/          # Hook tests
+├── utils/
+│   └── __tests__/          # Utility function tests
+├── api/
+│   └── __tests__/          # API tests
+└── test/
+    ├── setup.ts            # Test setup and global mocks
+    ├── test-utils.tsx      # Custom render utilities
+    └── __mocks__/          # Mock files
+```
+
+### Test Types
+
+- **Unit Tests**: For utility functions, hooks, and isolated components
 - **Component Tests**: For React components using React Testing Library
-- **Integration Tests**: For user workflows and 3D interactions
-- **Visual Regression Tests**: For 3D rendering consistency
+- **Integration Tests**: For user workflows and component interactions
+- **3D Component Tests**: For Three.js components with proper mocking
+
+### Writing Tests
+
+#### Testing Utility Functions
+
+```typescript
+// src/utils/__tests__/app.util.test.ts
+import { mimeTypeToExtension } from '../app.uti'
+
+describe('mimeTypeToExtension', () => {
+  it('should return correct extension for valid MIME types', () => {
+    expect(mimeTypeToExtension('image/jpeg')).toBe('jpg')
+    expect(mimeTypeToExtension('image/png')).toBe('png')
+  })
+})
+```
+
+#### Testing React Components
+
+```typescript
+// src/components/__tests__/footer.test.tsx
+import { render, screen, fireEvent } from '@testing-library/react'
+import { ThemeProvider, createTheme } from '@mui/material/styles'
+import Footer from '../footer'
+
+describe('Footer Component', () => {
+  it('should render footer image', () => {
+    render(
+      <ThemeProvider theme={createTheme()}>
+        <Footer />
+      </ThemeProvider>
+    )
+
+    expect(screen.getByAltText('Copyright')).toBeInTheDocument()
+  })
+})
+```
+
+#### Testing Custom Hooks
+
+```typescript
+// src/hooks/__tests__/product.hook.test.tsx
+import { renderHook } from '@testing-library/react'
+import { useProduct } from '../product.hook'
+import ProductProvider from '@/contexts/product.context'
+
+describe('useProduct hook', () => {
+  it('should return product context values', () => {
+    const wrapper = ({ children }) => (
+      <ProductProvider>{children}</ProductProvider>
+    )
+
+    const { result } = renderHook(() => useProduct(), { wrapper })
+    expect(result.current).toHaveProperty('selectedVariant')
+  })
+})
+```
+
+#### Testing 3D Components
+
+3D components require special mocking for Three.js dependencies:
+
+```typescript
+// Mock Three.js dependencies
+jest.mock('@react-three/drei', () => ({
+  useGLTF: jest.fn(() => ({ nodes: {}, materials: {} })),
+  useTexture: jest.fn(() => ({})),
+  Decal: ({ children, ...props }) => <div {...props}>{children}</div>,
+}))
+```
+
+### Test Configuration
+
+The project includes comprehensive test setup:
+
+- **Jest Configuration**: `jest.config.js`
+- **Test Setup**: `src/test/setup.ts` with global mocks
+- **Test Utilities**: `src/test/test-utils.tsx` with custom render functions
+- **Mocks**: Proper mocking for WebGL, Three.js, and browser APIs
+
+### Coverage
+
+Coverage reports are generated in the `coverage/` directory. The project maintains:
+
+- **70%** minimum coverage for branches, functions, lines, and statements
+- Excludes test files, type definitions, and configuration files
+- Integrates with CI/CD for automated coverage reporting
 
 ## 📦 Building for Production
 
