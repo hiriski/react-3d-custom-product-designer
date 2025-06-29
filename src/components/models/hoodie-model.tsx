@@ -35,7 +35,7 @@ const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
   }, [color])
 
   return (
-    <group scale={matchMobileView ? 3.4 : 4}>
+    <group scale={matchMobileView ? 3.3 : 4}>
       <mesh
         castShadow
         receiveShadow
@@ -43,14 +43,14 @@ const HoodieModel: FC<Props> = ({ color, imageUrl }) => {
         geometry={nodes.Object_2.geometry}
         material={materials?.material1}
         position={[0, 0, 0]}
-        rotation={[4.75, 0, -1.5]}
+        rotation={[4.75, 0, -1.1]}
         dispose={null}
       >
         {texture && (
           <Decal
-            position={[0.075, 0.08, 0.13]}
-            rotation={-1}
-            scale={0.15}
+            position={[0.085, 0.09, 0.15]}
+            rotation={[0.65, 1, 1, 'XYZ']}
+            scale={0.11}
             map={texture}
             depthTest={true}
           />
