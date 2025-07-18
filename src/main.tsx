@@ -13,9 +13,6 @@ import '@fontsource/plus-jakarta-sans/700-italic.css'
 import '@fontsource/plus-jakarta-sans/800.css'
 import '@fontsource/plus-jakarta-sans/800-italic.css'
 
-// css reset
-import CssBaseline from '@mui/material/CssBaseline'
-
 // app wrapper
 import AppWrapper from './app-wrapper'
 import MuiThemeProvider from './plugins/@mui/components/@mui-theme.provider'
@@ -25,7 +22,6 @@ import { BrowserRouter } from 'react-router-dom'
 
 createRoot(document.getElementById('root')!).render(
   <BrowserRouter>
-    <CssBaseline />
     <MuiThemeProvider>
       <AppWrapper />
     </MuiThemeProvider>
